@@ -2,32 +2,33 @@
 
 namespace tomzx\ProjectEuler\Generator;
 
-class Prime
+class BigPrime
 {
 	/**
-	 * Generate a valid int(32) = 2147483647/int(64) = 9223372036854775807 prime based on which php is used.
+	 * Generate a valid prime based on which php is used. Slower than the Prime generator.
 	 * @return \Generator
 	 */
 	public static function generator()
 	{
-		$primes = [2];
-		$currentNumber = 2;
-		yield 2;
+		$primes = ['2'];
+		$currentNumber = '2';
+		yield '2';
 		while (true) {
 			++$currentNumber;
+			$unitNumber = (int)substr($currentNumber, -1);
 			if (($currentNumber & 1) === 0) {
 				continue;
 			}
 
-			$squareRoot = sqrt($currentNumber);
+			$squareRoot = bcsqrt($currentNumber);
 
 			$foundPrimeDivisor = false;
 			foreach ($primes as $prime) {
-				if ($prime > $squareRoot) {
+				if (bccomp($prime, $squareRoot) === 1) {
 					break;
 				}
 
-				if ($currentNumber % $prime === 0) {
+				if (bcmod($currentNumber, $prime) === '0') {
 					$foundPrimeDivisor = true;
 					break;
 				}
