@@ -4,7 +4,12 @@ namespace tomzx\ProjectEuler\Solver;
 
 class TrianglePath
 {
-	public static function solve($triangle, $function = 'max')
+	/**
+	 * @param int[]  $triangle
+	 * @param string $function
+	 * @return int
+	 */
+	public static function solve(array $triangle, $function = 'max')
 	{
 		$scanRow = $triangle[0];
 		array_shift($triangle);
