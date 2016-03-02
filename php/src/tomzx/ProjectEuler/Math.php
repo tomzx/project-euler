@@ -25,13 +25,7 @@ class Math
 	{
 		$sum = 1;
 		foreach ($primes as $prime => $count) {
-			$divisorSum = 0;
-			$previous = 1;
-			for ($i = 0; $i <= $count; ++$i) {
-				$divisorSum += $previous;
-				$previous = $previous * $prime;
-			}
-			$sum *= $divisorSum;
+			$sum *= Series::geometric($prime, $count + 1);
 		}
 		return $sum;
 	}

@@ -1,5 +1,6 @@
 <?php
 
+// TODO: Extract this <tom@tomrochette.com>
 function fib($one, $two) {
 	global $total;
 	if ($one % 2 === 0) {

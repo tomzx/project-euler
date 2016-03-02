@@ -29,4 +29,8 @@ function q21($from, $to)
 	return $sumOfAmicableNumbers;
 }
 
-echo q21(1, 10000);
+$startTime = microtime(true);
+echo q21(1, 10000).PHP_EOL;
+$endTime = microtime(true);
+
+echo $endTime - $startTime;
