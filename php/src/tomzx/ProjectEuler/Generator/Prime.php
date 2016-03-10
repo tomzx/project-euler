@@ -39,4 +39,23 @@ class Prime
 			}
 		}
 	}
+
+	/**
+	 * @param int $value
+	 * @return array
+	 */
+	public static function upTo($value)
+	{
+		$generator = self::generator();
+		$primes = [];
+		foreach ($generator as $prime) {
+			if ($prime > $value) {
+				break;
+			}
+
+			$primes[] = $prime;
+		}
+
+		return $primes;
+	}
 }

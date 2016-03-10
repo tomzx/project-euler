@@ -36,4 +36,22 @@ class PrimeDecomposition
 
 		return $factors;
 	}
+
+	/**
+	 * @param int $number
+	 * @return array an array of prime that compose the given number
+	 */
+	public static function primesOnly($number)
+	{
+		return array_keys(self::solve($number));
+	}
+
+	/**
+	 * @param int $number
+	 */
+	public static function isPrime($number)
+	{
+		$primes = self::solve($number);
+		return count($primes) === 1 && array_key_exists($number, $primes);
+	}
 }
