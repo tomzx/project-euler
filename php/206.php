@@ -2,7 +2,8 @@
 
 // There are 378 925 620 squares that can be formed from 1020304050607080900 to 1929394959697989990.
 // Testing all possible combinations would require 10^9 = 1 000 000 000, an order more tests required.
-// Since it ends with a 0, we know the square must be a multiple of 10, which cuts our number of squares to test by 10.
+// Since the searched square ends with a 0, we know it must be a multiple of 10, which cuts the number of squares
+// to test by 10.
 function q206()
 {
 	$min = 1020304050607080900;
