@@ -10,15 +10,13 @@ class Prime
 	 */
 	public static function generator()
 	{
-		$primes = [2];
-		$currentNumber = 2;
 		yield 2;
+		yield 3;
+		// Set of primes we test against
+		$primes = [3];
+		$currentNumber = 3;
 		while (true) {
-			++$currentNumber;
-			if (($currentNumber & 1) === 0) {
-				continue;
-			}
-
+			$currentNumber += 2;
 			$squareRoot = sqrt($currentNumber);
 
 			$foundPrimeDivisor = false;
@@ -41,15 +39,29 @@ class Prime
 	}
 
 	/**
-	 * @param int $value
+	 * @param int $value Included
 	 * @return array
 	 */
 	public static function upTo($value)
 	{
+		return self::between(0, $value);
+	}
+
+	/**
+	 * @param int $from Included
+	 * @param int $to Included
+	 * @return array
+	 */
+	public static function between($from, $to)
+	{
 		$generator = self::generator();
 		$primes = [];
 		foreach ($generator as $prime) {
-			if ($prime > $value) {
+			if ($prime < $from) {
+				continue;
+			}
+
+			if ($prime > $to) {
 				break;
 			}
 
