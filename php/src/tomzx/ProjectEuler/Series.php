@@ -17,7 +17,7 @@ class Series
 		if ($n < 0) {
 			new LogicException('n cannot be negative.');
 		}
-		return $n * ($a1 * $a2) / 2;
+		return $n * ($a1 + $a2) / 2;
 	}
 
 	/**
