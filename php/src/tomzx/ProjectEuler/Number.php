@@ -37,7 +37,7 @@ class Number
 	 */
 	public static function getProperDivisorsType($n)
 	{
-		$sum = array_sum(self::getProperDivisors($n));
+		$sum = self::getProperDivisorsSum($n);
 		if ($sum > $n) {
 			return 'abundant';
 		} elseif ($sum < $n) {
@@ -45,6 +45,17 @@ class Number
 		} else {
 			return 'perfect';
 		}
+	}
+
+	/**
+	 * @param int $n
+	 * @return array
+	 */
+	public static function getDivisors($n)
+	{
+		$divisors = self::getProperDivisors($n);
+		$divisors[] = $n;
+		return $divisors;
 	}
 
 	/**
@@ -63,10 +74,14 @@ class Number
 		return $divisors;
 	}
 
+	/**
+	 * @param int $n
+	 * @return int
+	 */
 	public static function getDivisorsCount($n)
 	{
 		$count = 0;
-		$max = ceil(sqrt($n));
+		$max = (int)ceil(sqrt($n));
 		for ($i = 1; $i <= $max; ++$i) {
 			if ($n % $i === 0) {
 				$count += 2;
@@ -79,5 +94,45 @@ class Number
 		}
 
 		return $count;
+	}
+
+	/**
+	 * @param int $n
+	 * @return int
+	 */
+	public function getProperDivisorsCount($n)
+	{
+		return self::getDivisorsCount($n) - 1;
+	}
+
+	/**
+	 * @param int $n
+	 * @return int
+	 */
+	public static function getDivisorsSum($n)
+	{
+		$sum = 0;
+		$max = (int)ceil(sqrt($n));
+		for ($i = 1; $i < $max; ++$i) {
+			if ($n % $i === 0) {
+				$sum += $i + ($n / $i);
+			}
+		}
+
+		// Perfect square
+		if ($max * $max === $n) {
+			$sum += $max;
+		}
+
+		return $sum;
+	}
+
+	/**
+	 * @param int $n
+	 * @return int
+	 */
+	public static function getProperDivisorsSum($n)
+	{
+		return self::getDivisorsSum($n) - $n;
 	}
 }
