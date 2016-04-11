@@ -1,11 +1,22 @@
-// <?php
-// 
-// $total = 0;
-// for ($i = 1; $i <= 100; ++$i) {
-// 	$total += 
-// }
-// 
-// ?>
+<?php
 
-100! => en somme
-100*101/2 = 
+use tomzx\ProjectEuler\Math;
+
+require_once 'vendor/autoload.php';
+
+function q20($n)
+{
+	$factorial = 1;
+	for ($i = 2; $i <= $n; ++$i) {
+		$factorial = bcmul($factorial, $i);
+	}
+
+	$digits = str_split($factorial);
+	$sum = 0;
+	foreach ($digits as $digit) {
+		$sum += (int)$digit;
+	}
+	return $sum;
+}
+
+echo q20(100);
