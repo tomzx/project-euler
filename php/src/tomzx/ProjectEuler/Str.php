@@ -6,7 +6,7 @@ class Str
 {
 	/**
 	 * @param string $string
-	 * @param int $iteration
+	 * @param int    $iteration
 	 * @return string
 	 */
 	public static function rotate($string, $iteration)
@@ -14,5 +14,18 @@ class Str
 		$length = strlen($string);
 		$n = $iteration % $length;
 		return substr($string, $n) . substr($string, 0, $n);
+	}
+
+	/**
+	 * It's faster to use php strrev and compare the generated numbers/strings(more generic) than to compare the
+	 * characters individually through a for loop.
+	 *
+	 * @param string $string
+	 * @return bool
+	 */
+	public static function isPalindrome($string)
+	{
+		$reverse = strrev($string);
+		return (string)$string === (string)$reverse;
 	}
 }

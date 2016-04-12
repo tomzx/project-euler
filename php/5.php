@@ -1,25 +1,13 @@
 <?php
 
-// not so good
+use tomzx\ProjectEuler\Math;
+
+require_once 'vendor/autoload.php';
 
 function q5($number) {
-	$found = false;
-	$currentNumber = 0;
-	
-	while (!$found) {
-		++$currentNumber;
-		for ($i = $number; $i > 0; --$i) {
-			if ($currentNumber % $i !== 0) {
-				$found = false;
-				break;
-			}
-			$found = true;
-		}
-	}
-
-	echo $currentNumber;
+	$numbers = range(1, $number);
+	return Math::leastCommonMultiple($numbers);
 }
 
-q5(20);
-
-?>
+assert(2520 === q5(10));
+echo q5(20);

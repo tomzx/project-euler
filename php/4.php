@@ -1,16 +1,8 @@
 <?php
 
-function isPalindrome($number)
-{
-	$number = strval($number);
-	$length = strlen($number);
-	for ($i = 0; $i < $length / 2; ++$i) {
-		if ($number[$i] !== $number[$length - 1 - $i]) {
-			return false;
-		}
-	}
-	return true;
-}
+use tomzx\ProjectEuler\Str;
+
+require_once 'vendor/autoload.php';
 
 function q4()
 {
@@ -22,7 +14,7 @@ function q4()
 				break;
 			}
 
-			if (isPalindrome($value)) {
+			if (Str::isPalindrome($value)) {
 				$highestPalindrome = $value;
 			}
 		}

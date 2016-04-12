@@ -2,6 +2,9 @@
 
 namespace tomzx\ProjectEuler;
 
+use LogicException;
+use tomzx\ProjectEuler\Solver\PrimeDecomposition;
+
 class Math
 {
 	/**
@@ -38,5 +41,69 @@ class Math
 	public static function combination($n, $k)
 	{
 		return Math::factorial($n) / (Math::factorial($k) * Math::factorial($n - $k));
+	}
+
+	/**
+	 * @param float $a
+	 * @param float $b
+	 * @param float $c
+	 * @return array
+	 */
+	public static function solveQuadratic($a, $b, $c)
+	{
+		return [
+			(-$b - sqrt($b*$b - 4 * $a * $c)) / (2 * $a),
+			(-$b + sqrt($b*$b - 4 * $a * $c)) / (2 * $a)
+		];
+	}
+
+	/**
+	 * @param array $numbers
+	 * @return int
+	 */
+	public static function leastCommonMultiple(array $numbers)
+	{
+		if (empty($numbers)) {
+			throw new LogicException('Cannot obtain least common multiple on an empty array.');
+		}
+
+		$factors = [];
+		foreach ($numbers as $number) {
+			$decomposition = PrimeDecomposition::solve($number);
+			foreach ($decomposition as $prime => $count) {
+				$factors[$prime] = isset ($factors[$prime]) ? max($factors[$prime], $count) : $count;
+			}
+		}
+
+		$total = 1;
+		foreach ($factors as $prime => $count) {
+			$total *= $prime**$count;
+		}
+		return $total;
+	}
+
+	public static function greatestCommonDivisor(array $numbers)
+	{
+		if (empty($numbers)) {
+			throw new LogicException('Cannot obtain greatest common divisor on an empty array.');
+		}
+
+		$factors = [];
+		foreach ($numbers as $number) {
+			$decomposition = PrimeDecomposition::solve($number);
+			foreach ($decomposition as $prime => $count) {
+				$factors[$prime][] = $count;
+			}
+		}
+
+		$total = 1;
+		foreach ($factors as $prime => $counts) {
+			if (count($counts) === 1) {
+				continue;
+			}
+			sort($counts);
+			$total *= $prime**$counts[0];
+		}
+		return $total;
 	}
 }
