@@ -1,19 +1,14 @@
 <?php
 
-// Note: not very efficient
+// It might possible to reduce the loop conditions down further
 function q9($number)
 {
-	for ($c = 3; $c < $number; ++$c) {
-		for ($b = 2; $b < $c; ++$b) {
-			for ($a = 1; $a < $b; ++$a) {
-				echo $a . ' ' . $b . ' ' . $c . PHP_EOL;
-				if ($a + $b + $c !== $number) {
-					continue;
-				}
-
-				if ($a * $a + $b * $b === $c * $c) {
-					return $a * $b * $c;
-				}
+	for ($c = 2; $c < $number; ++$c) {
+		$max = $number - $c;
+		for ($b = 1; $b < $max; ++$b) {
+			$a = $number - $b - $c;
+			if ($a * $a + $b * $b === $c * $c) {
+				return $a * $b * $c;
 			}
 		}
 	}
