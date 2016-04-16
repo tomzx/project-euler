@@ -18,5 +18,5 @@ function q39($maxP)
 	return $p;
 }
 
-//assert(120 === q39(120));
+assert(120 === q39(120));
 echo q39(1000);
