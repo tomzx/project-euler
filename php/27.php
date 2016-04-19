@@ -2,7 +2,7 @@
 
 use tomzx\ProjectEuler\Arr;
 use tomzx\ProjectEuler\Generator\Prime;
-use tomzx\ProjectEuler\Solver\PrimeDecomposition;
+use tomzx\ProjectEuler\Solver\IntegerFactorization;
 
 require_once 'vendor/autoload.php';
 
@@ -23,7 +23,7 @@ function q27($a, $b) {
 				$formula = $n * $n + $i * $n + $j;
 
 				// To be prime, it has to be greater than one
-				$isPrime = $formula > 1 && PrimeDecomposition::isPrime($formula);
+				$isPrime = $formula > 1 && IntegerFactorization::isPrime($formula);
 				if ( ! $isPrime) {
 					break;
 				}

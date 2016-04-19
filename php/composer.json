@@ -18,7 +18,8 @@
 		"issues": "https://github.com/tomzx/project-euler/issues"
 	},
 	"require": {
-		"php": ">=5.5.0"
+		"php": ">=5.5.0",
+		"ext-gmp": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4"

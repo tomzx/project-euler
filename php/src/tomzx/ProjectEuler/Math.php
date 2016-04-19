@@ -3,7 +3,7 @@
 namespace tomzx\ProjectEuler;
 
 use LogicException;
-use tomzx\ProjectEuler\Solver\PrimeDecomposition;
+use tomzx\ProjectEuler\Solver\IntegerFactorization;
 
 class Math
 {
@@ -69,7 +69,7 @@ class Math
 
 		$factors = [];
 		foreach ($numbers as $number) {
-			$decomposition = PrimeDecomposition::solve($number);
+			$decomposition = IntegerFactorization::solve($number);
 			foreach ($decomposition as $prime => $count) {
 				$factors[$prime] = isset ($factors[$prime]) ? max($factors[$prime], $count) : $count;
 			}
@@ -90,7 +90,7 @@ class Math
 
 		$factors = [];
 		foreach ($numbers as $number) {
-			$decomposition = PrimeDecomposition::solve($number);
+			$decomposition = IntegerFactorization::solve($number);
 			foreach ($decomposition as $prime => $count) {
 				$factors[$prime][] = $count;
 			}
