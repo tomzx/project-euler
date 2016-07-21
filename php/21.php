@@ -26,4 +26,4 @@ function q21($from, $to)
 	return $sumOfAmicableNumbers;
 }
 
-echo q21(1, 10000).PHP_EOL;
+echo q21(1, 10000);
