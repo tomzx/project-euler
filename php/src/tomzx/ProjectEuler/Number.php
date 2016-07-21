@@ -135,4 +135,31 @@ class Number
 	{
 		return self::getDivisorsSum($n) - $n;
 	}
+
+	/**
+	 * @param int|string $n
+	 * @return bool
+	 */
+	public static function isPandigital($n, $length = null, $allowZero = false)
+	{
+		$length = $length ?: strlen($n);
+		$digits = str_split($n);
+		$values = array_count_values($digits);
+
+		if ( ! $allowZero && isset($values[0])) {
+			return false;
+		}
+
+		if (count($values) !== $length) {
+			return false;
+		}
+
+		foreach ($values as $value) {
+			if ($value > 1) {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }
