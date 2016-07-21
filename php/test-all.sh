@@ -13,7 +13,7 @@ EOL
 echo -n "" > results.txt
 
 for i in *.php; do
-	/usr/bin/time -f "%e\t$i" php -c custom-php.ini $i > /dev/null 2>> results.txt
+	/usr/bin/time -f "%e\t$i" --append -o results.txt php -c custom-php.ini $i
 done
 
 sort -rn -o results.txt results.txt
