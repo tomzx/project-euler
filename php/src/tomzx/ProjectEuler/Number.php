@@ -2,6 +2,8 @@
 
 namespace tomzx\ProjectEuler;
 
+use tomzx\ProjectEuler\Solver\IntegerFactorization;
+
 class Number
 {
 	/**
@@ -156,6 +158,37 @@ class Number
 
 		foreach ($values as $value) {
 			if ($value > 1) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param int $n
+	 * @return bool
+	 */
+	public static function isTruncatablePrime($n)
+	{
+		if ( ! IntegerFactorization::isPrime($n)) {
+			return false;
+		}
+
+		$stringRepresentation = (string)$n;
+		$stringRepresentationLength = strlen($stringRepresentation);
+		// Left to right
+		for ($i = 1; $i < $stringRepresentationLength; ++$i) {
+			$number = substr($stringRepresentation, $i);
+			if ( ! IntegerFactorization::isPrime($number)) {
+				return false;
+			}
+		}
+
+		// Right to left
+		for ($i = 1; $i < $stringRepresentationLength; ++$i) {
+			$number = substr($stringRepresentation, 0, $i);
+			if ( ! IntegerFactorization::isPrime($number)) {
 				return false;
 			}
 		}
